@@ -8,6 +8,21 @@ func TestStdIn(t *testing.T) {
 
 func TestCmd(t *testing.T) {
 	// Unit test.
+	// TODO: Create sample directory and files before testing.
+	cases := map[string]struct {
+		stdin  string
+		expect string
+	}{
+		"1": {stdin: "./test-dir", expect: "./test-dir\n├── dir1\n└── file1"},
+	}
+	for n, tc := range cases {
+		tc := tc
+		tc.Run(n, func(t *testing.T) {
+			if got := tree(tc.stdin); got != tc.expect {
+				t.Fatalf("expected is %v, but got is %V", tc.expext, got)
+			}
+		})
+	}
 }
 
 func TestSearch(t *testing.T) {
