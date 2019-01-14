@@ -52,4 +52,19 @@ func TestSeek(t *testing.T) {
 func TestStyle(t *testing.T) {
 	// Test styling output from array.
 	// TODO: Add option to set color output.
+	cases := map[string]struct {
+		src    tree
+		expect string
+	}{
+		"1": {src: tree{v: "test-dir", l: {tree{v: "dir1"}, tree{v: "dir1"}}}, expect: "test-dir\n├── dir1\n└── file1"},
+	}
+
+	for n, tc := range cases {
+		tc := tc
+		t.Run(n, func(t *testing.T) {
+			if actual := style(tc.src); actual != tc.expect {
+				t.Fatalf("expect is %v, but actual is %v", tc.expect, actual)
+			}
+		})
+	}
 }
