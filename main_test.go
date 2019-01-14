@@ -14,21 +14,39 @@ func TestCmd(t *testing.T) {
 		expect string
 	}{
 		"1": {stdin: "./test-dir", expect: "./test-dir\n├── dir1\n└── file1"},
+		"2": {stdin: "test-dir", expect: "test-dir\n├── dir1\n└── file1"},
 	}
 	for n, tc := range cases {
 		tc := tc
-		tc.Run(n, func(t *testing.T) {
-			if got := tree(tc.stdin); got != tc.expect {
-				t.Fatalf("expected is %v, but got is %V", tc.expext, got)
+		t.Run(n, func(t *testing.T) {
+			if actual := run(tc.stdin); actual != tc.expect {
+				t.Fatalf("expect is %v, but actual is %v", tc.expect, actual)
 			}
 		})
 	}
 }
 
-func TestSearch(t *testing.T) {
+func TestSeek(t *testing.T) {
 	// Test walk and find path function.
+	// TODO: type Tree(with leaf) type required.
 	// TODO: Create sample directory and files before testing.
 	// TODO: Add option -L (length).
+
+	cases := map[string]struct {
+		src    string
+		expect tree
+	}{
+		"1": {src: "./test-dir", expect: tree{v: "test-dir", l: {tree{v: "dir1"}, tree{v: "dir1"}}}},
+	}
+
+	for n, tc := range cases {
+		tc := tc
+		t.Run(n, func(t *testing.T) {
+			if actual := seek(tc.src); actual != tc.expected {
+				t.Fatalf("expect is %v, but actual is %v", tc.expect, actual)
+			}
+		})
+	}
 }
 
 func TestStyle(t *testing.T) {
