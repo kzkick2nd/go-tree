@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -13,9 +14,12 @@ type tree struct {
 }
 
 func main() {
-	var p string
-	fmt.Scan(&p)
-	fmt.Println(run(p))
+	flag.Parse()
+	dir := flag.Arg(0)
+	if dir == "" {
+		dir = "."
+	}
+	fmt.Println(run(dir))
 }
 
 func run(stdin string) string {
