@@ -119,6 +119,7 @@ func TestStyle(t *testing.T) {
 		})
 	}
 }
+
 func prepareTestDirTree(tree []string) (string, error) {
 	tmpDir, err := ioutil.TempDir("", "")
 	if err != nil {
