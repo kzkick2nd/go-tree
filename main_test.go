@@ -9,7 +9,7 @@ func TestStdIn(t *testing.T) {
 	// Parsing StdIn test.
 }
 
-func TestCmd(t *testing.T) {
+func TestRun(t *testing.T) {
 	// Unit test.
 	// TODO: Create sample directory and files before testing.
 	cases := map[string]struct {
