@@ -1,6 +1,9 @@
 package main
 
-import "testing"
+import (
+	"reflect"
+	"testing"
+)
 
 func TestStdIn(t *testing.T) {
 	// Parsing StdIn test.
@@ -48,7 +51,7 @@ func TestSeek(t *testing.T) {
 	for n, tc := range cases {
 		tc := tc
 		t.Run(n, func(t *testing.T) {
-			if actual := seek(tc.src); actual != tc.expected {
+			if actual := seek(tc.src); !reflect.DeepEqual(actual, tc.expect) {
 				t.Fatalf("expect is %v, but actual is %v", tc.expect, actual)
 			}
 		})
