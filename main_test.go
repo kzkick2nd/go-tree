@@ -35,8 +35,8 @@ func TestRun(t *testing.T) {
 		stdin  string
 		expect string
 	}{
-		"1": {stdin: "./test-dir", expect: "./test-dir\n├── dir1\n└── file1"},
-		"2": {stdin: "test-dir", expect: "test-dir\n├── dir1\n└── file1"},
+		"1": {stdin: "./test-dir", expect: "./test-dir\n├── dir1\n└── file1\n"},
+		"2": {stdin: "test-dir", expect: "test-dir\n├── dir1\n└── file1\n"},
 	}
 	for n, tc := range cases {
 		tc := tc
@@ -96,7 +96,7 @@ func TestStyle(t *testing.T) {
 				tree{v: "dir1"},
 				tree{v: "file1"},
 			}},
-			expect: "test-dir\n├── dir1\n└── file1",
+			expect: "test-dir\n├── dir1\n└── file1\n",
 		},
 	}
 
