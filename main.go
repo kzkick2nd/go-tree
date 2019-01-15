@@ -8,5 +8,5 @@ func seek() {}
 
 type tree struct {
 	v string
-	l []tree
+	n []tree
 }
