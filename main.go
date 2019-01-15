@@ -48,23 +48,20 @@ func seekDir(name, src string) tree {
 }
 
 func style(t tree) string {
-	s := drawTree(t, 0, false)
+	s := drawTree(t, 0, []bool{false})
 	return s
 }
 
-func drawTree(t tree, indent int, eol bool) string {
+func drawTree(t tree, indent int, eol []bool) string {
 	var s string
+	eol = append(eol, false)
+
 	s += t.v + "\n"
+
 	for i, l := range t.n {
-		eol := eol
-
-		if indent > 1 {
-			s += "│"
-		}
-
 		for j := 1; j <= indent; j++ {
-			if j == indent && !eol {
-				s += "│  "
+			if !eol[j-1] {
+				s += "|  "
 			} else {
 				s += "   "
 			}
@@ -72,10 +69,10 @@ func drawTree(t tree, indent int, eol bool) string {
 
 		if i == len(t.n)-1 {
 			s += "└── "
-			eol = true
+			eol[indent] = true
 		} else {
 			s += "├── "
-			eol = false
+			eol[indent] = false
 		}
 
 		s += drawTree(l, indent+1, eol)

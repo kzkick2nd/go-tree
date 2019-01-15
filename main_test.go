@@ -94,6 +94,20 @@ func TestStyle(t *testing.T) {
 			}},
 			expect: "test-dir\n├── dir1\n└── file1\n",
 		},
+		"2": {
+			input: tree{v: "test-dir", n: []tree{
+				tree{v: "test-dir", n: []tree{
+					tree{v: "test-dir", n: []tree{
+						tree{v: "test-dir", n: []tree{
+							tree{v: "file1"},
+						}},
+					}},
+					tree{v: "file1"},
+				}},
+				tree{v: "file1"},
+			}},
+			expect: "test-dir\n├── test-dir\n|  ├── test-dir\n|  |  └── test-dir\n|  |     └── file1\n|  └── file1\n└── file1\n",
+		},
 	}
 
 	for n, tc := range cases {
