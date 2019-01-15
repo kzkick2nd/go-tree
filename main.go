@@ -25,11 +25,11 @@ type tree struct {
 }
 
 func seek(src string) tree {
-	t := lsr(src, src)
+	t := seekDir(src, src)
 	return t
 }
 
-func lsr(name, src string) tree {
+func seekDir(name, src string) tree {
 	t := tree{v: name}
 
 	list, err := ioutil.ReadDir(src)
@@ -39,7 +39,7 @@ func lsr(name, src string) tree {
 
 	for _, f := range list {
 		if f.IsDir() {
-			t.n = append(t.n, lsr(f.Name(), filepath.Join(src, f.Name())))
+			t.n = append(t.n, seekDir(f.Name(), filepath.Join(src, f.Name())))
 			continue
 		}
 		t.n = append(t.n, tree{v: f.Name(), n: []tree{}})
