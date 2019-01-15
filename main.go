@@ -47,7 +47,38 @@ func lsr(name, src string) tree {
 	return t
 }
 
-func style(input tree) string {
-	s := input.v
+func style(t tree) string {
+	s := drawTree(t, 0, false)
+	return s
+}
+
+func drawTree(t tree, indent int, eol bool) string {
+	var s string
+	s += t.v + "\n"
+	for i, l := range t.n {
+		eol := eol
+
+		if indent > 1 {
+			s += "│"
+		}
+
+		for j := 1; j <= indent; j++ {
+			if j == indent && !eol {
+				s += "│  "
+			} else {
+				s += "   "
+			}
+		}
+
+		if i == len(t.n)-1 {
+			s += "└── "
+			eol = true
+		} else {
+			s += "├── "
+			eol = false
+		}
+
+		s += drawTree(l, indent+1, eol)
+	}
 	return s
 }

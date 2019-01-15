@@ -11,7 +11,7 @@ import (
 
 func TestMain(m *testing.M) {
 	// Create test dir
-	tmpDir, err := prepareTestDirTree([]string{"test-dir/dir1", "test-dir/file1"})
+	tmpDir, err := prepareTestDirTree([]string{"test-dir/dir1/", "test-dir/file1"})
 	if err != nil {
 		fmt.Printf("unable to create test dir tree: %v\n", err)
 		return
@@ -104,7 +104,7 @@ func TestStyle(t *testing.T) {
 		tc := tc
 		t.Run(n, func(t *testing.T) {
 			if actual := style(tc.input); actual != tc.expect {
-				t.Fatalf("expect is %v, but actual is %v", tc.expect, actual)
+				t.Fatalf("expect is \n%v\nbut actual is\n%v", tc.expect, actual)
 			}
 		})
 	}
