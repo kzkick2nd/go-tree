@@ -24,10 +24,6 @@ func TestMain(m *testing.M) {
 	os.Exit(code)
 }
 
-func TestStdIn(t *testing.T) {
-	// Parsing StdIn test.
-}
-
 func TestRun(t *testing.T) {
 	// Unit test.
 	// OK: Create sample directory and files before testing.
