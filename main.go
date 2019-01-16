@@ -58,7 +58,10 @@ func style(t tree) string {
 
 func drawTree(t tree, indent int, eol []bool) string {
 	var s string
-	eol = append(eol, false)
+
+	for len(eol) < indent+1 {
+		eol = append(eol, false)
+	}
 
 	s += t.v + "\n"
 
