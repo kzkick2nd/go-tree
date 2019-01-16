@@ -68,7 +68,7 @@ func drawTree(t tree, indent int, eol []bool) string {
 	for i, l := range t.n {
 		for j := 1; j <= indent; j++ {
 			if !eol[j-1] {
-				s += "|  "
+				s += "│  "
 			} else {
 				s += "   "
 			}
